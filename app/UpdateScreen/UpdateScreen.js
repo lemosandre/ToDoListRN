@@ -15,16 +15,17 @@ import Realm from 'realm';
 
 import moment from 'moment';
 
-class DetailsScreen extends Component {
+class UpdateScreen extends Component {
   constructor(props) {
     super(props);
+    let item = this.props.route.params.item;
     this.state = {
       isDatePickerVisible: false,
-      date: new Date(),
-      title: '',
-      detail: '',
+      id: item.id,
+      date: item.date,
+      title: item.title,
+      detail: item.detail,
       missTitle: false,
-      dateSelect: false,
     };
   }
 
@@ -40,7 +41,7 @@ class DetailsScreen extends Component {
     this.setState({date: dateValue, dateSelect: true});
     this.hideDatePicker();
   };
-  //Add to Realm DataBase
+  //Update to Realm DataBase
   addRealmData = () => {
     if (this.state.title === '') {
       this.setState({missTitle: true});
@@ -49,19 +50,21 @@ class DetailsScreen extends Component {
         schema: [ToDoListSchema],
       }).then((realm) => {
         realm.write(() => {
-          let realmData = realm.objects(TO_DO_LIST);
-          let id = 1;
-          for (let events of realmData) {
-            let result = JSON.parse(JSON.stringify(events));
-            id = result.id + 1;
+          if (
+            realm.objects(TO_DO_LIST).filtered('id =' + this.state.id).length >
+            0
+          ) {
+            realm.create(
+              TO_DO_LIST,
+              {
+                id: this.state.id,
+                title: this.state.title,
+                detail: this.state.detail,
+                date: this.state.date,
+              },
+              'modified',
+            );
           }
-          realm.create(TO_DO_LIST, {
-            id: id,
-            title: this.state.title,
-            detail: this.state.detail,
-            done: false,
-            date: this.state.date,
-          });
         });
       });
       this.props.navigation.navigate('Home');
@@ -80,7 +83,6 @@ class DetailsScreen extends Component {
             }
             onChangeText={(text) => this.setState({title: text})}
             value={this.state.title}
-            placeholder={'Title'}
           />
         </View>
         <View style={styles.boxContainer}>
@@ -90,17 +92,11 @@ class DetailsScreen extends Component {
             onChangeText={(text) => this.setState({detail: text})}
             multiline={true}
             value={this.state.detail}
-            placeholder={'Detail'}
           />
         </View>
         <View style={styles.boxContainer}>
           <TouchableOpacity style={styles.button} onPress={this.showDatePicker}>
-            <Text
-              style={
-                this.state.dateSelect
-                  ? [styles.text, {color: 'green'}]
-                  : [styles.text, styles.textDate]
-              }>
+            <Text style={[styles.text, {color: 'green'}]}>
               {moment(this.state.date).format('MMM Do YYYY')}
             </Text>
           </TouchableOpacity>
@@ -112,7 +108,7 @@ class DetailsScreen extends Component {
           />
         </View>
         <Button
-          title="Add"
+          title="Update"
           buttonStyle={styles.buttonStyle}
           titleStyle={styles.buttonTitle}
           onPress={() => this.addRealmData()}
@@ -166,4 +162,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DetailsScreen;
+export default UpdateScreen;

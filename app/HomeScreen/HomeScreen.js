@@ -144,6 +144,20 @@ class HomeScreen extends Component {
                       />
                     </Tooltip>
                     <TouchableOpacity
+                      onPress={() =>
+                        this.props.navigation.navigate('Update', {
+                          item: item,
+                        })
+                      }>
+                      <Icon
+                        name="edit"
+                        type="font-awesome"
+                        color="#0000e6"
+                        size={30}
+                        style={{paddingRight: 10}}
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity
                       onPress={() => this.removeRealmData(item.id)}>
                       <Icon
                         name="trash"
@@ -168,7 +182,7 @@ class HomeScreen extends Component {
             })}
             <TouchableOpacity
               style={styles.boxButton}
-              onPress={() => this.props.navigation.navigate('Details')}>
+              onPress={() => this.props.navigation.navigate('Add')}>
               <Text style={styles.text}>Add </Text>
             </TouchableOpacity>
             <View style={styles.boxStyleDone}>

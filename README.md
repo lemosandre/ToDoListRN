@@ -4,3 +4,5 @@
 2. run: cd ios && pod install && cd .. 
 3. IOS: npx react-native run-ios
 4. Android: npx react-native run-android
+
+# Create by Andre Lemos

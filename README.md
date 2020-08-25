@@ -7,5 +7,7 @@
 
 #Create by Andre Lemos
 
-![Simulator Screen Shot - iPhone 11 - 2020-08-25 at 13 50 33](https://user-images.githubusercontent.com/28652598/91209936-7ba6a800-e6da-11ea-9794-e9d141346482.png)
-![Simulator Screen Shot - iPhone 11 - 2020-08-25 at 13 50 39](https://user-images.githubusercontent.com/28652598/91210141-c1fc0700-e6da-11ea-9b80-feddd7f6fd21.png)
+
+![Simulator Screen Shot - iPhone 11 - 2020-08-25 at 14 37 54](https://user-images.githubusercontent.com/28652598/91214224-caefd700-e6e0-11ea-95fd-1f740bf15785.png)
+![Simulator Screen Shot - iPhone 11 - 2020-08-25 at 14 37 59](https://user-images.githubusercontent.com/28652598/91214234-cd523100-e6e0-11ea-833a-00137e63ef18.png)
+![Simulator Screen Shot - iPhone 11 - 2020-08-25 at 14 38 04](https://user-images.githubusercontent.com/28652598/91214245-cfb48b00-e6e0-11ea-9c3d-328998a2c38c.png)
